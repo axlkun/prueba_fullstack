@@ -175,6 +175,33 @@ class CommentController
                     'message' => 'Comment requested',
                     'data' => $Comment
                 ));
+
+                return;
+        }else{
+            http_response_code(400);
+            echo json_encode(array(
+                'status' => '400',
+                'message' => 'Comment does not exist',
+            ));
+            return;
+        }
+
+    }
+
+
+    public static function index(){
+        
+        $comments = Comment::allComments();
+
+        if($comments){
+            http_response_code(201);
+                echo json_encode(array(
+                    'status' => '201',
+                    'message' => 'Comments requested',
+                    'data' => $comments
+                ));
+
+                return;
         }else{
             http_response_code(400);
             echo json_encode(array(

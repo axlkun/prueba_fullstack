@@ -25,12 +25,14 @@ $router->post('/api/comment',[CommentController::class, 'store']);
 $router->put('/api/comment',[CommentController::class, 'update']);
 $router->delete('/api/comment',[CommentController::class, 'destroy']);
 $router->get('/api/comment',[CommentController::class, 'show']);
+$router->get('/api/comment/all',[CommentController::class, 'index']);
 
 // views
 $router->get('/',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
 $router->get('/profile',[PaginasController::class,'profile']);
+$router->get('/comment/detail',[PaginasController::class,'comment']);
 
 // auth
 $router->post('/auth/login',[LoginController::class, 'login']);
