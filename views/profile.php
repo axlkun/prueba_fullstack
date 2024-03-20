@@ -2,7 +2,7 @@
 
 <div id="userDetailsContainer"></div>
 
-<a href="">Actualizar perfil</a>
+<a href="/profile/update">Actualizar perfil</a>
 <a href="">Eliminar perfil</a>
 
 <script>

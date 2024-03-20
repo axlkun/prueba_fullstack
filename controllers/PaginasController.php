@@ -49,4 +49,14 @@ class PaginasController{
     public static function comment(Router $router){
         $router->render('comment');
     }
+
+    public static function profile_update(Router $router){
+        session_start();
+        $id = $_SESSION['id'];
+        $userDetails = Usuario::find($id);
+
+        $router->render('profile_update', [
+                "userDetails" => $userDetails
+            ]);
+    }
 }

@@ -33,6 +33,7 @@ $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
 $router->get('/profile',[PaginasController::class,'profile']);
 $router->get('/comment/detail',[PaginasController::class,'comment']);
+$router->get('/profile/update',[PaginasController::class,'profile_update']);
 
 // auth
 $router->post('/auth/login',[LoginController::class, 'login']);
