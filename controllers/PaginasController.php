@@ -24,11 +24,13 @@ class PaginasController{
 
     public static function home(Router $router){
 
-        $comments = Comment::allComments();
+        // $comments = Comment::allComments();
 
-        $router->render('home', [
-            "comments" => $comments
-        ]);
+        // $router->render('home', [
+        //     "comments" => $comments
+        // ]);
+
+        $router->render('home');
     }
 
     public static function profile(Router $router){
@@ -42,5 +44,9 @@ class PaginasController{
         // ]);
 
         $router->render('profile');
+    }
+
+    public static function comment(Router $router){
+        $router->render('comment');
     }
 }
