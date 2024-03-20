@@ -10,6 +10,7 @@ class Comment extends ActiveRecord{
 
    public $id;
    public $user; //fk
+   public $fullname;
    public $coment_text;
    public $likes;
    public $creation_date;
@@ -19,6 +20,7 @@ class Comment extends ActiveRecord{
    {
       $this->id = $args['id'] ?? null;
       $this->user = $args['user'] ?? '';
+      $this->fullname = $args['fullname'] ?? '';
       $this->coment_text = $args['coment_text'] ?? '';
       $this->likes = $args['likes'] ?? '';
       $this->creation_date = $args['creation_date'] ?? date('Y-m-d H:i:s');
