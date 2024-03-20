@@ -54,7 +54,7 @@ class Router
         }
 
         if ($fn) {
-            
+
             // Ejecuta la función del endpoint
             call_user_func($fn, $this);
         } else {
@@ -63,16 +63,20 @@ class Router
     }
 
     //Muestra una vista
-    public function render($view,$datos = []){
+    public function render($view, $datos = [])
+    {
+
+        // Verificar si la sesión ya está activa
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         
-        foreach($datos as $key => $value){
+        foreach ($datos as $key => $value) {
             $$key = $value; //convertir la llave en variable, para acceder a su contenido, $$ -> variable de variable
         }
         // ob_start(); //iniciar almacenamiento en memoria
 
-        session_start();
-
-        if(isset($_SESSION['login']) && $_SESSION['login'] === true){
+        if (isset($_SESSION['login']) && $_SESSION['login'] === true) {
 
             include __DIR__ . "/views/layout.php";
         }

@@ -30,6 +30,7 @@ $router->get('/api/comment',[CommentController::class, 'show']);
 $router->get('/',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
+$router->get('/profile',[PaginasController::class,'profile']);
 
 // auth
 $router->post('/auth/login',[LoginController::class, 'login']);
