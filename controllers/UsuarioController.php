@@ -137,11 +137,19 @@ class UsuarioController
             if ($usuario) {
                 $usuario->destroy();
 
+                // Verificar si la sesión ya está activa
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
+                $_SESSION = [];
+
                 http_response_code(201);
                 echo json_encode(array(
                     'status' => '201',
                     'message' => 'User deleted',
                 ));
+
                 return;
             } else {
                 http_response_code(500);
@@ -154,7 +162,8 @@ class UsuarioController
         }
     }
 
-    public static function show(){
+    public static function show()
+    {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
         if (!$id) {
@@ -168,14 +177,14 @@ class UsuarioController
 
         $usuario = Usuario::find($id);
 
-        if($usuario){
+        if ($usuario) {
             http_response_code(201);
-                echo json_encode(array(
-                    'status' => '201',
-                    'message' => 'User requested',
-                    'data' => $usuario
-                ));
-        }else{
+            echo json_encode(array(
+                'status' => '201',
+                'message' => 'User requested',
+                'data' => $usuario
+            ));
+        } else {
             http_response_code(400);
             echo json_encode(array(
                 'status' => '400',
@@ -183,6 +192,5 @@ class UsuarioController
             ));
             return;
         }
-
     }
 }

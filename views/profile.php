@@ -3,7 +3,7 @@
 <div id="userDetailsContainer"></div>
 
 <a href="/profile/update">Actualizar perfil</a>
-<a href="">Eliminar perfil</a>
+<button id="deleteProfile">Eliminar perfil</button>
 
 <script>
     async function getUserDetails() {
@@ -41,4 +41,33 @@
 
     // Llamar a la función getUserDetails al cargar la página
     window.onload = getUserDetails;
+
+    document.getElementById('deleteProfile').addEventListener('click', function(event) {
+            // Confirmar si el usuario realmente desea eliminar el comentario
+            
+            if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
+
+                const sessionId = <?php echo json_encode($_SESSION['id']); ?>;
+
+                fetch(`http://localhost:8080/api/usuario?id=${sessionId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //Redireccionar a la página de inicio si la eliminación fue exitosa
+                    if (data.status === '201') {
+                        window.location.href = '/';
+                    } else {
+                        alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el usuario:', error);
+                    alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
+                });
+            }
+        });
 </script>

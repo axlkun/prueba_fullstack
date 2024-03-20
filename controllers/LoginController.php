@@ -49,8 +49,11 @@ class LoginController{
     }
 
     public static function logout(Router $router){
-        session_start(); //debemos acceder a la sesion actual
-        //debuguear($_SESSION); contiene el email y el login=true
+        // Verificar si la sesión ya está activa
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
         $_SESSION = []; //se reinicia la variable de sesion
         
         header('Location: /');
