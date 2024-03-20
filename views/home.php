@@ -46,8 +46,7 @@
 
     // Función para mostrar más detalles del comentario
     function verMas(commentId) {
-        // Lógica para mostrar más detalles del comentario (puedes implementarla según tus necesidades)
-        console.log('Ver más', commentId);
+        window.location.href = `http://localhost:8080/comment/detail?id=${commentId}`;
     }
 
     // Función para eliminar un comentario
