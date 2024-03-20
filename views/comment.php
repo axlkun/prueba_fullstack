@@ -1,8 +1,11 @@
+<?php $id = isset($_GET['id']) ? $_GET['id'] : null; ?>
 <div id="commentDetails"></div>
+<a href="/comment/update?id=<?php echo $id; ?>">Actualizar</a>
+<a href="">Eliminar</a>
 
 <script>
     // obtener id
-    const id = <?php echo json_encode(isset($_GET['id']) ? $_GET['id'] : null); ?>;
+    const id = <?php echo $id; ?>;
 
     if (!id) {
         window.location.href = '/home';

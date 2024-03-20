@@ -59,4 +59,19 @@ class PaginasController{
                 "userDetails" => $userDetails
             ]);
     }
+
+    public static function comment_update(Router $router){
+        
+        $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+        if(!$id){
+            $router->render('home');
+        }
+
+        $commentDetails = Comment::find($id);
+
+        $router->render('comment_update', [
+                "commentDetails" => $commentDetails
+            ]);
+    }
 }

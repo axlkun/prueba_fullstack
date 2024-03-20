@@ -22,7 +22,7 @@ class Comment extends ActiveRecord{
       $this->user = $args['user'] ?? '';
       $this->fullname = $args['fullname'] ?? '';
       $this->coment_text = $args['coment_text'] ?? '';
-      $this->likes = $args['likes'] ?? '';
+      $this->likes = $args['likes'] ?? 0;
       $this->creation_date = $args['creation_date'] ?? date('Y-m-d H:i:s');
       $this->update_date = date('Y-m-d H:i:s');
    }
@@ -34,7 +34,7 @@ class Comment extends ActiveRecord{
       if(!$this->coment_text){
          self::$errores[] = "Text is required";
      }
-      if(!$this->likes){
+      if($this->likes === null){
          self::$errores[] = "Likes required";
      }
 

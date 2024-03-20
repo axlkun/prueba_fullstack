@@ -28,7 +28,6 @@
                                 <p>${comment.coment_text}</p>
                                 <p>${comment.likes}</p>
                                 <button onclick="verMas(${comment.id})">Ver más</button>
-                                <button onclick="eliminarComentario(${comment.id})">Eliminar</button>
                             </div>
                         </div>
                     `;
