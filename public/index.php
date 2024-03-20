@@ -27,6 +27,7 @@ $router->get('/api/comment',[CommentController::class, 'show']);
 // views
 $router->get('/',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
+$router->get('/home',[PaginasController::class,'home']);
 
 
 $router->validateRoutes();

@@ -123,6 +123,19 @@ class ActiveRecord
       return array_shift($resultado); //primer elemento de un array
    }
 
+   public static function allComments(){
+      
+      $query = "SELECT uc.id, u.fullname, uc.coment_text, uc.likes
+      FROM user u
+      JOIN user_comment uc ON u.id = uc.user";
+
+      $resultado = self::consultarSQL($query);
+
+      return $resultado;
+   }
+
+
+
    public static function consultarSQL($query)
    {
       //Consultar la base de datos
