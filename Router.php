@@ -61,4 +61,16 @@ class Router
             echo "Pagina no encontrada";
         }
     }
+
+    //Muestra una vista
+    public function render($view,$datos = []){
+        
+        foreach($datos as $key => $value){
+            $$key = $value; //convertir la llave en variable, para acceder a su contenido, $$ -> variable de variable
+        }
+        // ob_start(); //iniciar almacenamiento en memoria
+        include __DIR__ . "/views/$view.php";
+        // $contenido = ob_get_clean(); //limpiamos memoria
+        // include __DIR__ . "/views/layout.php";
+    }
 }
