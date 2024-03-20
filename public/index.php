@@ -5,11 +5,13 @@ require_once __DIR__ . '/../Router.php';
 require_once __DIR__ . '/../controllers/UsuarioController.php';
 require_once __DIR__ . '/../controllers/CommentController.php';
 require_once __DIR__ . '/../controllers/PaginasController.php';
+require_once __DIR__ . '/../controllers/LoginController.php';
 
 use MVC\Router;
 use Controllers\UsuarioController;
 use Controllers\CommentController;
 use Controllers\PaginasController;
+use Controllers\LoginController;
 
 $router = new Router();
 
@@ -28,6 +30,10 @@ $router->get('/api/comment',[CommentController::class, 'show']);
 $router->get('/',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
+
+// auth
+$router->post('/auth/login',[LoginController::class, 'login']);
+$router->get('/auth/logout',[LoginController::class,'logout']);
 
 
 $router->validateRoutes();

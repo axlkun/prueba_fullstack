@@ -115,6 +115,12 @@ class ActiveRecord
       return static::$errores;
    }
 
+   //Validacion
+   public static function getErrors(){
+      
+      return static::$errores;
+   }
+
    // buscar un registro por id
    public static function find($id)
    {
