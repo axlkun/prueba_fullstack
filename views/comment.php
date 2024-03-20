@@ -1,7 +1,7 @@
 <?php $id = isset($_GET['id']) ? $_GET['id'] : null; ?>
 <div id="commentDetails"></div>
 <a href="/comment/update?id=<?php echo $id; ?>">Actualizar</a>
-<a href="">Eliminar</a>
+<button id="deleteComment">Eliminar Comentario</button>
 
 <script>
     // obtener id
@@ -33,5 +33,32 @@
                 // Si ocurre un error, redirecciona a la página de inicio
                 window.location.href = '/home';
             });
+
+            // eliminar comentario
+            document.getElementById('deleteComment').addEventListener('click', function(event) {
+            // Confirmar si el usuario realmente desea eliminar el comentario
+            if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
+                // Consumir el endpoint POST para eliminar el comentario
+                fetch(`http://localhost:8080/api/comment?id=${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => {
+                    //Redireccionar a la página de inicio si la eliminación fue exitosa
+                    if (data.status === '201') {
+                        window.location.href = '/home';
+                    } else {
+                        alert('Error al eliminar el comentario. Por favor, inténtalo de nuevo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error al eliminar el comentario:', error);
+                    alert('Error al eliminar el comentario. Por favor, inténtalo de nuevo.');
+                });
+            }
+        });
     }
 </script>
