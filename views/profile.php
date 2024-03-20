@@ -2,6 +2,9 @@
 
 <div id="userDetailsContainer"></div>
 
+<a href="">Actualizar perfil</a>
+<a href="">Eliminar perfil</a>
+
 <script>
     async function getUserDetails() {
         try {
