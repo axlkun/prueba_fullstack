@@ -30,13 +30,17 @@
     function renderComments(comments, container) {
         const commentsHTML = comments.map(comment => {
             return `
-                <div class="anuncio">
-                    <div class="contenido-anuncio">
-                        <p>${comment.fullname}</p>
+                <div class="comment">
+                    <div class="comment-text">
+                        <p class="comment-user">${comment.fullname}</p>
                         <p>${comment.coment_text}</p>
                         <p>${comment.likes}</p>
-                        <button onclick="verMas(${comment.id})">Ver más</button>
                     </div>
+                    
+                    <div>
+                    <button class="comment-button" onclick="verMas(${comment.id})">Ver más</button>
+                    </div>
+
                 </div>
             `;
         }).join('');
