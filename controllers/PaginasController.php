@@ -51,7 +51,10 @@ class PaginasController{
     }
 
     public static function profile_update(Router $router){
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $id = $_SESSION['id'];
         $userDetails = Usuario::find($id);
 
@@ -73,5 +76,17 @@ class PaginasController{
         $router->render('comment_update', [
                 "commentDetails" => $commentDetails
             ]);
+    }
+
+    public static function comment_create(Router $router){
+
+        // if (session_status() === PHP_SESSION_NONE) {
+        //     session_start();
+        // }
+
+        // $id = $_SESSION['id'];
+
+        $router->render('comment_create');
+
     }
 }
