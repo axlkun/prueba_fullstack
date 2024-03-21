@@ -1,16 +1,18 @@
-<main class="contenedor seccion centrar-login">
-    <h1>Nuevo comentario</h1>
+<main class="contenedor centrar-form-comment">
 
-    <form class="formulario" id="createCommentForm">
-        <fieldset>
+    <div class="">
+        <h1>Nuevo comentario</h1>
+        <form class="formulario" id="createCommentForm">
+
             <label for="coment_text">Mensaje</label>
             <textarea id="coment_text" name="coment_text" required></textarea>
-        </fieldset>
 
-        <div class="centrar-boton">
-            <button type="button" id="createCommentButton" class="boton boton-verde">Comentar</button>
-        </div>
-    </form>
+            <div>
+                <button type="button" id="createCommentButton">Comentar</button>
+            </div>
+        </form>
+    </div>
+
 </main>
 
 <script>
