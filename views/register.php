@@ -1,7 +1,7 @@
 <main class="contenedor seccion centrar-login">
     <h1>Crear una cuenta</h1>
 
-    <form class="formulario" method="POST" enctype="multipart/form-data" action="/login">
+    <form class="formulario" method="POST" enctype="multipart/form-data" action="/login" id="signup-form">
         <fieldset>
 
             <label for="fullname">Nombre completo:</label>
@@ -20,13 +20,50 @@
         </fieldset>
 
         <div class="centrar-boton">
-            <input type="submit" value="Ingresar" class="boton boton-verde">
-            <!-- <a href="/inventario_ayuntamiento/registros.php" class="boton-rojo">Ingresar</a> -->
+            <input type="submit" value="Crear cuenta" class="boton boton-verde">
         </div>
 
         <div class="espacio">
-            <p>Ya tienes cuenta?</p><a href="/">Iniciar sesion</a>
+            <p>¿Ya tienes cuenta?</p><a href="/">Iniciar sesión</a>
         </div>
         
     </form>
 </main>
+
+<script>
+    document.getElementById("signup-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        // Recolectar datos del formulario
+        const formData = new FormData(this);
+
+        // Convertir los datos a un objeto JSON
+        const jsonData = {};
+        formData.forEach(function(value, key) {
+            jsonData[key] = value;
+        });
+
+        // Realizar la solicitud al endpoint
+        fetch("http://localhost:8080/api/usuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(jsonData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Manejar la respuesta del servidor
+            alert(data.message); // Muestra un mensaje de éxito o error
+            
+            if (data.status === "201") {
+                // Opcional: Redireccionar a otra página después de crear la cuenta
+                window.location.href = "/";
+            }
+        })
+        .catch(error => {
+            console.error("Error al enviar la solicitud:", error);
+            alert("Error al crear la cuenta. Por favor, inténtalo de nuevo más tarde.");
+        });
+    });
+</script>
