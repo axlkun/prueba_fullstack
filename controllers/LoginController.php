@@ -43,7 +43,7 @@ class LoginController{
 
         }
 
-        $router->render('/login',[
+        $router->render('login',[
             'errores' => $errores,
             'data' => $_POST
         ]);

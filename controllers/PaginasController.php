@@ -12,10 +12,14 @@ use Model\Usuario;
 
 class PaginasController{
 
-    public static function login(Router $router){
-        
-        $router->render('login');
+    public static function index(Router $router){
+        $router->render('index');
     }
+
+    // public static function login(Router $router){
+        
+    //     $router->render('login');
+    // }
 
     public static function register(Router $router){
 

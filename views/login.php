@@ -1,18 +1,18 @@
 <main class="contenedor centrar-login">
 
-    <?php if (isset($errores)) : ?>
-        <?php foreach ($errores as $error) : ?>
-            <div class="alerta error">
-                <?php echo $error; ?>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
-
     <div>
 
         <h1>Iniciar sesión</h1>
-        
-        <form class="formulario" method="POST" enctype="multipart/form-data" action="/auth/login">
+
+        <?php if (isset($errores)) : ?>
+            <?php foreach ($errores as $error) : ?>
+                <div class="alerta error">
+                    <?php echo $error; ?>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <form class="formulario" method="POST" enctype="multipart/form-data" action="/login">
 
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" placeholder="Ingresa tu correo" required>

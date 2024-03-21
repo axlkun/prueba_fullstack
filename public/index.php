@@ -28,7 +28,8 @@ $router->get('/api/comment',[CommentController::class, 'show']);
 $router->get('/api/comment/all',[CommentController::class, 'index']);
 
 // views
-$router->get('/',[PaginasController::class,'login']);
+$router->get('/',[PaginasController::class,'index']);
+// $router->get('/auth/login',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
 $router->get('/profile',[PaginasController::class,'profile']);
@@ -38,7 +39,8 @@ $router->get('/comment/update',[PaginasController::class,'comment_update']);
 $router->get('/comment/create',[PaginasController::class,'comment_create']);
 
 // auth
-$router->post('/auth/login',[LoginController::class, 'login']);
+$router->post('/login',[LoginController::class, 'login']);
+$router->get('/login',[LoginController::class, 'login']);
 $router->get('/auth/logout',[LoginController::class,'logout']);
 
 

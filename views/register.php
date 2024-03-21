@@ -1,8 +1,11 @@
-<main class="contenedor seccion centrar-login">
-    <h1>Crear una cuenta</h1>
+<main class="contenedor centrar-login">
 
-    <form class="formulario" method="POST" enctype="multipart/form-data" action="/login" id="signup-form">
-        <fieldset>
+
+    <div>
+        <h1>Crear una cuenta</h1>
+
+        <form class="formulario" method="POST" enctype="multipart/form-data" action="/login" id="signup-form">
+
             <label for="fullname">Nombre completo:</label>
             <input type="text" id="fullname" name="fullname" placeholder="Ingresa tu nombre completo" required>
 
@@ -14,22 +17,23 @@
 
             <label for="openid">Openid:</label>
             <input type="number" id="openid" name="openid" placeholder="Ingresa tu openid" required>
-        </fieldset>
 
-        <div class="centrar-boton">
-            <input type="submit" value="Crear cuenta" class="boton boton-verde">
-        </div>
+            <div class="button-container">
+                <input type="submit" value="Crear cuenta">
+            </div>
 
-        <div class="espacio">
-            <p>¿Ya tienes cuenta?</p><a href="/">Iniciar sesión</a>
-        </div>
-    </form>
+            <div class="register-container">
+                <p>¿Ya tienes cuenta?</p><a href="/login">Iniciar sesión</a>
+            </div>
+        </form>
+    </div>
+
 </main>
 
 <script>
     async function submitForm(event) {
         event.preventDefault();
-        
+
         const formData = new FormData(this);
         const jsonData = convertFormDataToJson(formData);
 
@@ -61,7 +65,7 @@
     function handleResponse(data) {
         alert(data.message);
         if (data.status === "201") {
-            window.location.href = "/";
+            window.location.href = "/login";
         }
     }
 
