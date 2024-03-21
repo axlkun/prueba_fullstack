@@ -105,6 +105,22 @@ h4 {
     }
 }
 
+/* index */
+
+.index-container{
+    text-align: center;
+}
+.btn-container-index{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+
+    a{
+        color: #9300f5;
+    }
+}
+
 
 /* Form */
 .centrar-form {

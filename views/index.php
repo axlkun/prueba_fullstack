@@ -1,11 +1,14 @@
 <main class="contenedor centrar-form">
 
-    <div>
-        <h1>Prueba</h1>
+    <div class="index-container">
+        <h1>Prueba técnica</h1>
+        <p>Stack: HTML - CSS - JavaScript - PHP - MariaDB - Docker</p>
 
-        <a href="/login">Login</a>
-        <a href="/register">Registro</a>
+        <div class="btn-container-index">
+            <a href="/login">Login</a>
+            <a href="/register">Registro</a>
+        </div>
+
     </div>
 
 </main>
-
