@@ -213,7 +213,7 @@ h4 {
 }
 
 .comment{
-    min-width: 40rem;
+    /* min-width: 40rem; */
     width:fit-content;
     background-color: #e3dfdf;
     display: flex;
