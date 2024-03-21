@@ -16,7 +16,7 @@ $auth = $_SESSION['login'] ?? false;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prueba Full Stack</title>
-    <!-- <link rel="stylesheet" href="../build/css/app.css"> -->
+    <link rel="stylesheet" href="app.css">
 </head>
 
 <body>
@@ -32,7 +32,7 @@ $auth = $_SESSION['login'] ?? false;
 
     <?php echo $contenido ?>
 
-    <footer class="footer seccion">
+    <footer class="footer">
         <!-- <div class="contenedor contenedor-footer">
             <nav class="navegacion">
                 <a href="/home">Inicio</a>
