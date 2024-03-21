@@ -3,7 +3,6 @@
 
     <form class="formulario" method="POST" enctype="multipart/form-data" action="/login" id="signup-form">
         <fieldset>
-
             <label for="fullname">Nombre completo:</label>
             <input type="text" id="fullname" name="fullname" placeholder="Ingresa tu nombre completo" required>
 
@@ -15,8 +14,6 @@
 
             <label for="openid">Openid:</label>
             <input type="number" id="openid" name="openid" placeholder="Ingresa tu openid" required>
-            <!-- Cambié 'name="password"' por 'name="contraseña"' -->
-
         </fieldset>
 
         <div class="centrar-boton">
@@ -26,24 +23,31 @@
         <div class="espacio">
             <p>¿Ya tienes cuenta?</p><a href="/">Iniciar sesión</a>
         </div>
-        
     </form>
 </main>
 
 <script>
-    document.getElementById("signup-form").addEventListener("submit", function(event) {
+    // Función para enviar el formulario y crear la cuenta
+    function submitForm(event) {
         event.preventDefault();
         
-        // Recolectar datos del formulario
         const formData = new FormData(this);
+        const jsonData = convertFormDataToJson(formData);
 
-        // Convertir los datos a un objeto JSON
+        sendRequest(jsonData);
+    }
+
+    // Función para convertir FormData a JSON
+    function convertFormDataToJson(formData) {
         const jsonData = {};
         formData.forEach(function(value, key) {
             jsonData[key] = value;
         });
+        return jsonData;
+    }
 
-        // Realizar la solicitud al endpoint
+    // Función para enviar la solicitud al servidor
+    function sendRequest(jsonData) {
         fetch("http://localhost:8080/api/usuario", {
             method: "POST",
             headers: {
@@ -52,18 +56,24 @@
             body: JSON.stringify(jsonData)
         })
         .then(response => response.json())
-        .then(data => {
-            // Manejar la respuesta del servidor
-            alert(data.message); // Muestra un mensaje de éxito o error
-            
-            if (data.status === "201") {
-                // Opcional: Redireccionar a otra página después de crear la cuenta
-                window.location.href = "/";
-            }
-        })
-        .catch(error => {
-            console.error("Error al enviar la solicitud:", error);
-            alert("Error al crear la cuenta. Por favor, inténtalo de nuevo más tarde.");
-        });
-    });
+        .then(handleResponse)
+        .catch(handleError);
+    }
+
+    // Función para manejar la respuesta del servidor
+    function handleResponse(data) {
+        alert(data.message);
+        if (data.status === "201") {
+            window.location.href = "/";
+        }
+    }
+
+    // Función para manejar errores
+    function handleError(error) {
+        console.error("Error al enviar la solicitud:", error);
+        alert("Error al crear la cuenta. Por favor, inténtalo de nuevo más tarde.");
+    }
+
+    // Agregar el evento submit al formulario
+    document.getElementById("signup-form").addEventListener("submit", submitForm);
 </script>
