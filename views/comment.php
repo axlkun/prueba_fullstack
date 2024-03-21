@@ -1,11 +1,22 @@
-<?php 
-$commentId = isset($_GET['id']) ? $_GET['id'] : null; 
+<?php
+$commentId = isset($_GET['id']) ? $_GET['id'] : null;
 $sessionId = $_SESSION['id'];
 ?>
-<div id="commentDetails"></div>
-<!-- <a href="/comment/update?id=<?php echo $id; ?>">Actualizar</a> -->
-<button id="updateComment">Actualizar</button>
-<button id="deleteComment">Eliminar Comentario</button>
+
+<main class="contenedor centrar-form-comment">
+
+    <div>
+        <h1>Comentario</h1>
+        <div id="commentDetails" class="comment-details"></div>
+
+        <div class="btn-container">
+            <button id="updateComment" class="btn">Actualizar</button>
+            <button id="deleteComment" class="btn-eliminar">Eliminar Comentario</button>
+        </div>
+
+    </div>
+
+</main>
 
 <script>
     // obtener id
@@ -54,18 +65,19 @@ $sessionId = $_SESSION['id'];
             const commentDetailsContainer = document.getElementById('commentDetails');
             const commentData = data.data;
             const html = `
-                <h2>Comentario</h2>
-                <p>ID: ${commentData.id}</p>
-                <p>Usuario: ${commentData.user}</p>
-                <p>Texto: ${commentData.coment_text}</p>
-                <p>Likes: ${commentData.likes}</p>
-                <p>Fecha de Creación: ${commentData.creation_date}</p>
-                <p>Fecha de Actualización: ${commentData.update_date}</p>
+                
+            <p><strong>ID:</strong> ${commentData.id}</p>
+            <p><strong>Usuario:</strong> ${commentData.user}</p>
+            <p><strong>Texto:</strong> ${commentData.coment_text}</p>
+            <p><strong>Likes:</strong> ${commentData.likes}</p>
+            <p><strong>Fecha de Creación:</strong> ${commentData.creation_date}</p>
+            <p><strong>Fecha de Actualización:</strong> ${commentData.update_date}</p>
+
             `;
             commentDetailsContainer.innerHTML = html;
 
-           // Deshabilitar el botón de actualizar si el usuario no es el mismo que el sessionId
-           if (commentData.user !== sessionId) {
+            // Deshabilitar el botón de actualizar si el usuario no es el mismo que el sessionId
+            if (commentData.user !== sessionId) {
                 document.getElementById('updateComment').disabled = true;
             } else {
                 // Habilitar el botón de actualizar si el usuario es el mismo que el sessionId

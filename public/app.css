@@ -255,9 +255,40 @@ h4 {
     transition: .3s ease background-color;
   }
   
+
+  /* commment details */
+  .comment-details{
+    background-color: #e3dfdf;
+    padding: 15px;
+    
+    p{
+        font-size: medium;
+    }
+  }
+
+  .btn-container{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  .btn-eliminar{
+    background-color: #f50000;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #600505;
+    }
+  }
   
 /* Footer */
 .footer {
-    background-color: #f2f2f2;
+    background-color: #e3dfdf;
     text-align: center;
 }
