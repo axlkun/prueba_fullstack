@@ -1,8 +1,10 @@
-<main class="contenedor seccion centrar-login">
-    <h1>Actualizar perfil</h1>
+<main class="contenedor centrar-form">
 
-    <form class="formulario" id="updateForm">
-        <fieldset>
+    <div>
+        <h1>Actualizar perfil</h1>
+
+        <form class="formulario" id="updateForm">
+
             <label for="fullname">Nombre completo:</label>
             <input type="text" id="fullname" name="fullname" placeholder="Ingresa tu nombre completo" value="<?php echo $userDetails->fullname ?? ''; ?>" required>
 
@@ -14,12 +16,13 @@
 
             <label for="openid">Openid:</label>
             <input type="number" id="openid" name="openid" placeholder="Ingresa tu openid" value="<?php echo $userDetails->openid ?? ''; ?>" required>
-        </fieldset>
 
-        <div class="centrar-boton">
-            <button type="button" id="updateButton" class="boton boton-verde">Actualizar</button>
-        </div>
-    </form>
+            <div class="centrar-boton">
+                <button type="button" id="updateButton">Actualizar</button>
+            </div>
+        </form>
+    </div>
+
 </main>
 
 <script>
@@ -49,7 +52,7 @@
             if (data.status === '201') {
                 alert(data.message);
                 window.location.href = '/profile';
-            }else{
+            } else {
                 alert(data.message);
             }
         } catch (error) {
