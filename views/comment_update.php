@@ -1,16 +1,19 @@
-<main class="contenedor seccion centrar-login">
-    <h1>Actualizar comentario</h1>
+<main class="contenedor centrar-form-comment">
 
-    <form class="formulario" id="updateForm">
-        <fieldset>
+    <div>
+        <h1>Actualizar comentario</h1>
+
+        <form class="formulario" id="updateForm">
+
             <label for="coment_text">Mensaje</label>
             <textarea id="coment_text" name="coment_text" required><?php echo isset($commentDetails->coment_text) ? $commentDetails->coment_text : ''; ?></textarea>
-        </fieldset>
 
-        <div class="centrar-boton">
-            <button type="button" id="updateButton" class="boton boton-verde">Actualizar</button>
-        </div>
-    </form>
+            <div class="centrar-boton">
+                <button type="button" id="updateButton" class="boton boton-verde">Actualizar</button>
+            </div>
+        </form>
+    </div>
+
 </main>
 
 <script>
