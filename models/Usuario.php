@@ -77,24 +77,24 @@ class Usuario extends ActiveRecord
 
    public function authenticate()
    {
-      session_start();
+      if (session_status() === PHP_SESSION_NONE) {
+         session_start();
+      }
 
       $query = "SELECT id, fullname FROM " . self::$tabla . " WHERE email = '" . $this->email . "' LIMIT 1";
       $resultado = self::$db->query($query);
 
-      if($resultado->num_rows > 0){
+      if ($resultado->num_rows > 0) {
          $usuario = $resultado->fetch_assoc();
          $_SESSION['fullname'] = $usuario['fullname'];
          $_SESSION['id'] = $usuario['id'];
          $_SESSION['login'] = true;
          header('Location: /home');
-     } else {
+      } else {
          // Error al obtener los datos del usuario
          $_SESSION = []; // Limpiar la sesión
          $errores[] = "Error al autenticar al usuario";
          header('Location: /home');
-
-     }
-
+      }
    }
 }
