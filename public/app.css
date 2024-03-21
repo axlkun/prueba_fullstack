@@ -62,9 +62,8 @@ h4 {
 .header {
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 1rem; 
+    justify-content: space-between;
+    align-items: center;
     background-color: #f0f0f0;
 }
 
@@ -75,12 +74,12 @@ h4 {
 }
 
 .nav-links a {
-    
+
     margin: 1rem;
     text-decoration: none;
     color: #333;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         color: #9300f5;
     }
@@ -90,9 +89,9 @@ h4 {
     .header {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; 
-        align-items: center; 
-        padding: 1rem; 
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
         background-color: #f0f0f0;
     }
 
@@ -101,7 +100,8 @@ h4 {
     }
 
     .nav-links a {
-        margin-left: 1rem; /* Añadir espacio entre los enlaces */
+        margin-left: 1rem;
+        /* Añadir espacio entre los enlaces */
     }
 }
 
@@ -115,7 +115,7 @@ h4 {
     align-items: center;
 }
 
-.alerta{
+.alerta {
 
     padding: .5rem;
     text-align: center;
@@ -124,7 +124,7 @@ h4 {
     text-transform: uppercase;
     margin: 1rem 0;
 
-    &.error{
+    &.error {
         background-color: red;
     }
 
@@ -141,10 +141,10 @@ h4 {
         font-size: 1.4rem;
         color: grey;
         margin: 1rem 0 0 0;
-        
+
     }
 
-    .register-container{
+    .register-container {
         text-align: center;
     }
 
@@ -181,8 +181,28 @@ h4 {
 
 }
 
+/* Home */
+.home {
+    min-height: 90vh;
+    margin: 30px 0;
+    background-color: #f2f2f2;
+}
+
+.btn {
+    background-color: #9300f5;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &:hover{
+        background-color: #4d0081;
+    }
+}
+
 /* Footer */
-.footer{
+.footer {
     background-color: #f2f2f2;
     text-align: center;
 }
