@@ -8,17 +8,12 @@
 <script>
     async function getUserDetails() {
         try {
-            // Obtener el id del usuario
             const sessionId = <?php echo json_encode($_SESSION['id']); ?>;
-
             const apiUrl = `http://localhost:8080/api/usuario?id=${sessionId}`;
-
-            // Hacer la solicitud a la API
             const response = await fetch(apiUrl);
             const data = await response.json();
 
             if (response.ok) {
-
                 const userDetailsContainer = document.getElementById('userDetailsContainer');
 
                 const userDetailsHTML = `
@@ -32,42 +27,42 @@
 
                 userDetailsContainer.innerHTML = userDetailsHTML;
             } else {
-                console.error('Error al obtener los datos del usuario:', data.message);
+                alert(data.message);
             }
         } catch (error) {
-            console.error('Error al realizar la solicitud:', error);
+            alert('Error al realizar la solicitud:', error);
         }
     }
 
-    // Llamar a la función getUserDetails al cargar la página
-    window.onload = getUserDetails;
-
-    document.getElementById('deleteProfile').addEventListener('click', function(event) {
-            // Confirmar si el usuario realmente desea eliminar el comentario
-            
-            if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
-
+    async function deleteProfile() {
+        try {
+            if (confirm('¿Estás seguro de que deseas eliminar este perfil?')) {
                 const sessionId = <?php echo json_encode($_SESSION['id']); ?>;
+                const apiUrl = `http://localhost:8080/api/usuario?id=${sessionId}`;
 
-                fetch(`http://localhost:8080/api/usuario?id=${sessionId}`, {
+                const response = await fetch(apiUrl, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    //Redireccionar a la página de inicio si la eliminación fue exitosa
-                    if (data.status === '201') {
-                        window.location.href = '/';
-                    } else {
-                        alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al eliminar el usuario:', error);
-                    alert('Error al eliminar el usuario. Por favor, inténtalo de nuevo.');
                 });
+
+                const data = await response.json();
+
+                if (data.status === '201') {
+                    alert(data.message);
+                    window.location.href = '/';
+                } else {
+                    alert(data.message);
+                }
             }
-        });
+        } catch (error) {
+            console.error('Error al eliminar el perfil:', error);
+            alert('Error al eliminar el perfil. Por favor, inténtalo de nuevo.');
+        }
+    }
+
+    window.onload = getUserDetails;
+
+    document.getElementById('deleteProfile').addEventListener('click', deleteProfile);
 </script>
