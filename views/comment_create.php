@@ -3,31 +3,24 @@
 
     <form class="formulario" id="createCommentForm">
         <fieldset>
-
             <label for="coment_text">Mensaje</label>
             <textarea id="coment_text" name="coment_text" required></textarea>
-
         </fieldset>
 
         <div class="centrar-boton">
             <button type="button" id="createCommentButton" class="boton boton-verde">Comentar</button>
         </div>
-
     </form>
 </main>
 
 <script>
-    document.getElementById('createCommentButton').addEventListener('click', function() {
+    async function createComment() {
         const form = document.getElementById('createCommentForm');
         const formData = new FormData(form);
-        const formJSON = {};
-
-        formData.forEach((value, key) => {
-            formJSON[key] = value;
-        });
+        const formJSON = convertFormDataToJson(formData);
 
         // Obtener el ID de usuario de la sesión
-        const userId = <?php echo json_encode($_SESSION['id'] ?? ''); ?>;
+        const userId = getUserIdFromSession();
         if (!userId) {
             console.error('ID de usuario no encontrado en la sesión.');
             return;
@@ -39,23 +32,47 @@
 
         const url = 'http://localhost:8080/api/comment';
 
-        fetch(url, {
+        try {
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formJSON)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Redireccionar a la página del comentario creado si la creación fue exitosa
-
-                if (data.status === '201') {
-                    window.location.href = `/home`;
-                }
-            })
-            .catch(error => {
-                console.error('Error al crear el comentario:', error);
             });
-    });
+
+            const data = await response.json();
+
+            handleCommentResponse(data);
+        } catch (error) {
+            handleCommentError(error);
+        }
+    }
+
+    function convertFormDataToJson(formData) {
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+        return jsonData;
+    }
+
+    function getUserIdFromSession() {
+        return <?php echo json_encode($_SESSION['id'] ?? ''); ?>;
+    }
+
+    function handleCommentResponse(data) {
+        if (data.status === '201') {
+            alert(data.message);
+            window.location.href = `/home`;
+        } else {
+            alert(data.message);
+        }
+    }
+
+    function handleCommentError(error) {
+        alert('Error al crear el comentario.');
+    }
+
+    document.getElementById('createCommentButton').addEventListener('click', createComment);
 </script>
