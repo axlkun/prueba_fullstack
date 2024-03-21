@@ -46,6 +46,7 @@
 
     // Función para redirigir a la página de detalle del comentario
     function verMas(commentId) {
+        // console.log(commentId);
         window.location.href = `http://localhost:8080/comment/detail?id=${commentId}`;
     }
 
