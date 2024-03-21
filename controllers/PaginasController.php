@@ -24,24 +24,10 @@ class PaginasController{
 
     public static function home(Router $router){
 
-        // $comments = Comment::allComments();
-
-        // $router->render('home', [
-        //     "comments" => $comments
-        // ]);
-
         $router->render('home');
     }
 
     public static function profile(Router $router){
-
-        // session_start();
-        // $id = $_SESSION['id'];
-        // $userDetails = Usuario::find($id);
-
-        // $router->render('profile', [
-        //     "userDetails" => $userDetails
-        // ]);
 
         $router->render('profile');
     }
@@ -79,12 +65,6 @@ class PaginasController{
     }
 
     public static function comment_create(Router $router){
-
-        // if (session_status() === PHP_SESSION_NONE) {
-        //     session_start();
-        // }
-
-        // $id = $_SESSION['id'];
 
         $router->render('comment_create');
 
