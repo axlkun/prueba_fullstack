@@ -58,6 +58,53 @@ h4 {
     font-size: 2.6rem;
 }
 
+/* Header */
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 1rem; 
+    background-color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-links a {
+    
+    margin: 1rem;
+    text-decoration: none;
+    color: #333;
+
+    &:hover{
+        cursor: pointer;
+        color: #9300f5;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+        align-items: center; 
+        padding: 1rem; 
+        background-color: #f0f0f0;
+    }
+
+    .nav-links {
+        flex-direction: row;
+    }
+
+    .nav-links a {
+        margin-left: 1rem; /* Añadir espacio entre los enlaces */
+    }
+}
+
 
 /* Form */
 .centrar-login {
@@ -119,7 +166,7 @@ h4 {
 
     input[type=submit] {
         width: 100%;
-        background-color: #4CAF50;
+        background-color: #9300f5;
         color: white;
         padding: 14px 20px;
         margin: 15px 0;
@@ -129,7 +176,7 @@ h4 {
     }
 
     input[type=submit]:hover {
-        background-color: #45a049;
+        background-color: #4d0081;
     }
 
 }
