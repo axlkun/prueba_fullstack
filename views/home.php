@@ -1,7 +1,10 @@
 <main class="contenedor seccion centrar-comentarios">
     <h1>Comentarios</h1>
 
-    <a href="/comment/create" class="btn">Nuevo comentario</a>
+    <div class="home-btn-container">
+        <a href="/comment/create" class="btn">Nuevo comentario</a>
+    </div>
+
 
     <div class="home" id="commentsContainer"></div>
 </main>
