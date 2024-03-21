@@ -3,49 +3,52 @@
 
     <form class="formulario" id="updateForm">
         <fieldset>
-
             <label for="coment_text">Mensaje</label>
             <textarea id="coment_text" name="coment_text" required><?php echo isset($commentDetails->coment_text) ? $commentDetails->coment_text : ''; ?></textarea>
-
         </fieldset>
 
         <div class="centrar-boton">
             <button type="button" id="updateButton" class="boton boton-verde">Actualizar</button>
         </div>
-
     </form>
 </main>
 
 <script>
-    document.getElementById('updateButton').addEventListener('click', function() {
-        const form = document.getElementById('updateForm');
-        const formData = new FormData(form);
-        const formJSON = {};
+    async function updateComment() {
+        try {
+            const form = document.getElementById('updateForm');
+            const formData = new FormData(form);
+            const formJSON = {};
 
-        formData.forEach((value, key) => {
-            formJSON[key] = value;
-        });
+            formData.forEach((value, key) => {
+                formJSON[key] = value;
+            });
 
-        const id = <?php echo json_encode($commentDetails->id ?? ''); ?>;
-        const url = `http://localhost:8080/api/comment?id=${id}`;
+            const id = <?php echo json_encode($commentDetails->id ?? ''); ?>;
+            const url = `http://localhost:8080/api/comment?id=${id}`;
 
-        fetch(url, {
+            const response = await fetch(url, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(formJSON)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Redireccionar a la página anterior si la actualización fue exitosa
-
-                if (data.status === '201') {
-                    window.location.href = `/comment/detail?id=${id}`;
-                }
-            })
-            .catch(error => {
-                console.error('Error al actualizar el perfil:', error);
             });
-    });
+
+            const data = await response.json();
+
+            if (data.status === '201') {
+                alert(data.message);
+                window.location.href = `/comment/detail?id=${id}`;
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            console.error('Error al actualizar el comentario:', error);
+            alert('Error al actualizar el comentario. Por favor, inténtalo de nuevo.');
+        }
+    }
+
+    // Manejar el evento de clic en el botón de actualización
+    document.getElementById('updateButton').addEventListener('click', updateComment);
 </script>
