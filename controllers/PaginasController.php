@@ -10,16 +10,12 @@ use MVC\Router;
 use Model\Comment;
 use Model\Usuario;
 
+// renderiza las vistas acorde a la url accedida
 class PaginasController{
 
     public static function index(Router $router){
         $router->render('index');
     }
-
-    // public static function login(Router $router){
-        
-    //     $router->render('login');
-    // }
 
     public static function register(Router $router){
 

@@ -33,13 +33,16 @@ class Router
             session_start();
         }
 
-        $auth = $_SESSION['login'] ?? null; //el valor es true si ya inicio sesion, sino es null
+        //el valor es true si ya inicio sesion, sino es null
+        $auth = $_SESSION['login'] ?? null;
 
         //Arreglo de rutas protegidas
         $rutas_protegidas = ['/home', '/profile', '/comment/detail', '/profile/update', '/comment/update', '/comment/create'];
 
         $method = $_SERVER['REQUEST_METHOD'];
-        $actualUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI']; //almacena la URL o endpoint ejecutado
+
+        //almacena la URL o endpoint ejecutado
+        $actualUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI'];
 
         switch ($method) {
             case 'GET':

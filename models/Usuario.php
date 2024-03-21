@@ -63,9 +63,8 @@ class Usuario extends ActiveRecord
 
    public function validatePass($resultado)
    {
-      $usuario = $resultado->fetch_object(); //resultado es una instancia de $db o de la base de datos tenemos acceso al metodo fetch_object el cual va a retornar lo que encuentre en la base de datos
-
-      //debuguear($usuario); retorna el id, email y contraseña 
+      // obtenemos la data de bdd del usuario
+      $usuario = $resultado->fetch_object();
 
       if ($this->pass === $usuario->pass) {
          return true;
@@ -75,6 +74,7 @@ class Usuario extends ActiveRecord
       }
    }
 
+   // dejar pasar al usuario autenticado y almacenar sus datos en session
    public function authenticate()
    {
       if (session_status() === PHP_SESSION_NONE) {

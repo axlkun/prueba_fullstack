@@ -10,6 +10,7 @@ use Model\Usuario;
 
 class UsuarioController
 {
+    // crear usuario
     public static function store(Router $router)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -57,6 +58,7 @@ class UsuarioController
         ));
     }
 
+    // actualizar usuario
     public static function update(Router $router)
     {
 
@@ -79,7 +81,7 @@ class UsuarioController
 
             $datosUsuario = json_decode($json, true);
 
-            //Sincronizar objeto en memoria con lo que el usuario escribió
+            //Sincronizar objeto en memoria con los datos recibidos
             $usuario->updateObject($datosUsuario);
 
             $errores = $usuario->validate();
@@ -116,6 +118,7 @@ class UsuarioController
     }
 
 
+    // eliminar usuario
     public static function destroy()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -162,6 +165,7 @@ class UsuarioController
         }
     }
 
+    // mostrar información de un usuario
     public static function show()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : null;

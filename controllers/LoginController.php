@@ -16,11 +16,14 @@ class LoginController{
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             
-            $auth = new Usuario($_POST); //se crea una nueva instancia del objeto Admin con los datos almacenados en la variable POST
-            //debuguear($auth);
+            //se crea una nueva instancia del objeto Usuario con los datos almacenados en la variable POST
+            $auth = new Usuario($_POST);
+
+            // validar que no existan errores
             $errores = $auth->validate();
 
             if(empty($errores)){
+                
                 //verificar si el usuario existe
                 $resultado = $auth->exists();
 

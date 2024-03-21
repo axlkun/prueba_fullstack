@@ -2,6 +2,7 @@
 
 namespace Model;
 
+// clase para interactuar con base de datos como un framework
 class ActiveRecord
 {
    protected static $db;
@@ -18,6 +19,7 @@ class ActiveRecord
       self::$db = $database;
    }
 
+   // insertar
    public function store()
    {
       // prevenir inyeccion
@@ -41,6 +43,7 @@ class ActiveRecord
       }
    }
 
+   // actualizar
    public function update()
    {
       $atributos = $this->santizarAtributos();
@@ -66,6 +69,7 @@ class ActiveRecord
       }
    }
 
+   // eliminar
    public function destroy()
    {
       $query = "DELETE FROM " . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
@@ -93,6 +97,7 @@ class ActiveRecord
       return $atributos;
    }
 
+   // previene insertar caracteres que podrían vulnerar la bdd
    public function santizarAtributos()
    {
       $atributos = $this->atributos();
@@ -129,6 +134,7 @@ class ActiveRecord
       return array_shift($resultado); //primer elemento de un array
    }
 
+   // obtener todos los registros
    public static function allComments(){
       
       $query = "SELECT uc.id, u.fullname, uc.coment_text, uc.likes
@@ -140,8 +146,7 @@ class ActiveRecord
       return $resultado;
    }
 
-
-
+   // ejecutar una query
    public static function consultarSQL($query)
    {
       //Consultar la base de datos
@@ -161,7 +166,7 @@ class ActiveRecord
       return $array;
    }
 
-   //Active record trabaja con Objetos no con arreglos, entonces convertimos el arreglo arrojado por la consulta a un objeto
+   // convertimos el arreglo arrojado por la consulta a un objeto
    protected static function crearObjeto($registro)
    {
       $objeto = new static; //Nuevo objeto de la clase heredada (usuario/comentario) de acuerdo a los atributos de su constructor

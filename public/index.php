@@ -29,7 +29,6 @@ $router->get('/api/comment/all',[CommentController::class, 'index']);
 
 // views
 $router->get('/',[PaginasController::class,'index']);
-// $router->get('/auth/login',[PaginasController::class,'login']);
 $router->get('/register',[PaginasController::class,'register']);
 $router->get('/home',[PaginasController::class,'home']);
 $router->get('/profile',[PaginasController::class,'profile']);

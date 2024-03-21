@@ -9,5 +9,5 @@ $db = connectDB();
  
 use Model\ActiveRecord;
 
-//Se crea un nuevo objeto. No requiere instancia por que el metodo, y el atributo al que hace referencia son estaticos.
+//Se crea un nuevo objeto. No requiere instancia por que el metodo y el atributo al que hace referencia son estaticos.
 ActiveRecord::setDB($db);

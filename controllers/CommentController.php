@@ -10,7 +10,8 @@ use Model\Comment;
 
 class CommentController
 {
-    public static function store(Router $router)
+    // nuevo comentario
+    public static function store()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -57,7 +58,8 @@ class CommentController
         ));
     }
 
-    public static function update(Router $router)
+    // actualizar comentario
+    public static function update()
     {
 
         $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -79,7 +81,7 @@ class CommentController
 
             $datosComment = json_decode($json, true);
 
-            //Sincronizar objeto en memoria con lo que el Comment escribió
+            //Sincronizar objeto en memoria con los valores recibidos
             $Comment->updateObject($datosComment);
 
             $errores = $Comment->validate();
@@ -116,6 +118,7 @@ class CommentController
     }
 
 
+    // eliminar un comentario
     public static function destroy()
     {
         $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -154,6 +157,7 @@ class CommentController
         }
     }
 
+    // mostrar un comentario por id
     public static function show(){
         $id = isset($_GET['id']) ? $_GET['id'] : null;
 
@@ -189,6 +193,7 @@ class CommentController
     }
 
 
+    // mostrar todos los comentarios
     public static function index(){
         
         $comments = Comment::allComments();
