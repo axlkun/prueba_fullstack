@@ -1,9 +1,18 @@
-<h1>Profile</h1>
+<main class="contenedor centrar-form-comment">
 
-<div id="userDetailsContainer"></div>
+    <div>
+        <h1>Profile</h1>
 
-<a href="/profile/update">Actualizar perfil</a>
-<button id="deleteProfile">Eliminar perfil</button>
+        <div id="userDetailsContainer" class="comment-details"></div>
+
+        <div class="btn-container" style="text-align: center;">
+            <a href="/profile/update" class="btn">Actualizar perfil</a>
+            <button id="deleteProfile" class="btn-eliminar">Eliminar perfil</button>
+        </div>
+
+    </div>
+</main>
+
 
 <script>
     async function getUserDetails() {
@@ -17,12 +26,12 @@
                 const userDetailsContainer = document.getElementById('userDetailsContainer');
 
                 const userDetailsHTML = `
-                    <p>Fullname: ${data.data.fullname}</p>
-                    <p>Email: ${data.data.email}</p>
-                    <p>Password: ${data.data.pass}</p>
-                    <p>OpenID: ${data.data.openid}</p>
-                    <p>Creation Date: ${data.data.creation_date}</p>
-                    <p>Update Date: ${data.data.update_date}</p>
+                    <p><strong>Nombre:</strong> ${data.data.fullname}</p>
+                    <p><strong>Email:</strong> ${data.data.email}</p>
+                    <p><strong>Password:</strong> ${data.data.pass}</p>
+                    <p><strong>Openid:</strong> ${data.data.openid}</p>
+                    <p><strong>Fecha de creacion:</strong> ${data.data.creation_date}</p>
+                    <p><strong>Fecha de actualizacion:</strong> ${data.data.update_date}</p>
                 `;
 
                 userDetailsContainer.innerHTML = userDetailsHTML;
