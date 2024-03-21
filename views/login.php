@@ -1,6 +1,14 @@
 <main class="contenedor seccion centrar-login">
     <h1>Iniciar sesión</h1>
 
+    <?php if (isset($errores)) : ?>
+        <?php foreach ($errores as $error) : ?>
+            <div class="alerta error">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
     <form class="formulario" method="POST" enctype="multipart/form-data" action="/auth/login">
         <fieldset>
 
@@ -19,6 +27,6 @@
         <div class="espacio">
             <p>No tienes una cuenta?</p><a href="/register">Registrarse</a>
         </div>
-        
+
     </form>
 </main>
