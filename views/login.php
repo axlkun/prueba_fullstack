@@ -1,4 +1,4 @@
-<main class="contenedor centrar-login">
+<main class="contenedor centrar-form">
 
     <div>
 
