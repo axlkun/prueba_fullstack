@@ -27,40 +27,37 @@
 </main>
 
 <script>
-    // Función para enviar el formulario y crear la cuenta
-    function submitForm(event) {
+    async function submitForm(event) {
         event.preventDefault();
         
         const formData = new FormData(this);
         const jsonData = convertFormDataToJson(formData);
 
-        sendRequest(jsonData);
+        try {
+            const response = await fetch("http://localhost:8080/api/usuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(jsonData)
+            });
+
+            const data = await response.json();
+
+            handleResponse(data);
+        } catch (error) {
+            handleError(error);
+        }
     }
 
-    // Función para convertir FormData a JSON
     function convertFormDataToJson(formData) {
         const jsonData = {};
-        formData.forEach(function(value, key) {
+        formData.forEach((value, key) => {
             jsonData[key] = value;
         });
         return jsonData;
     }
 
-    // Función para enviar la solicitud al servidor
-    function sendRequest(jsonData) {
-        fetch("http://localhost:8080/api/usuario", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(jsonData)
-        })
-        .then(response => response.json())
-        .then(handleResponse)
-        .catch(handleError);
-    }
-
-    // Función para manejar la respuesta del servidor
     function handleResponse(data) {
         alert(data.message);
         if (data.status === "201") {
@@ -68,12 +65,10 @@
         }
     }
 
-    // Función para manejar errores
     function handleError(error) {
         console.error("Error al enviar la solicitud:", error);
         alert("Error al crear la cuenta. Por favor, inténtalo de nuevo más tarde.");
     }
 
-    // Agregar el evento submit al formulario
     document.getElementById("signup-form").addEventListener("submit", submitForm);
 </script>
