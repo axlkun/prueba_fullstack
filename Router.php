@@ -29,6 +29,15 @@ class Router
 
     public function validateRoutes()
     {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $auth = $_SESSION['login'] ?? null; //el valor es true si ya inicio sesion, sino es null
+
+        //Arreglo de rutas protegidas
+        $rutas_protegidas = ['/home', '/profile', '/comment/detail', '/profile/update', '/comment/update', '/comment/create'];
+
         $method = $_SERVER['REQUEST_METHOD'];
         $actualUrl = $_SERVER['REQUEST_URI'] === '' ? '/' : $_SERVER['REQUEST_URI']; //almacena la URL o endpoint ejecutado
 
@@ -53,23 +62,27 @@ class Router
                 break;
         }
 
-        if ($fn) {
+        //Proteger las rutas
+        if (in_array($actualUrl, $rutas_protegidas) && !$auth) {
+            header('Location: /');
+        }
 
-            // Ejecuta la función del endpoint
+        // Ejecuta la función del endpoint
+        if ($fn) {
             call_user_func($fn, $this);
         } else {
-            echo "Pagina no encontrada";
+            header('Location: /');
         }
     }
 
     //Muestra una vista
     public function render($view, $datos = [])
     {
- 
+
         foreach ($datos as $key => $value) {
             $$key = $value; //convertir la llave en variable, para acceder a su contenido, $$ -> variable de variable
         }
-       
+
         ob_start(); //iniciar almacenamiento en memoria
         include __DIR__ . "/views/$view.php";
         $contenido = ob_get_clean(); //limpiamos memoria
