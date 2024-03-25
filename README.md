@@ -4,6 +4,17 @@
 Prueba fullstack sin frameworks: HTML - CSS - JavaScript - PHP - MariaDB - Docker
 
 
+## Ejecutar en local
+
+Accede al directorio del proyecto y ejecuta el comando:
+
+```bash
+  docker compose up -d --build
+```
+
+Accede a: http://localhost:8080
+
+
 ## PHP Endpoints
 
 ### Create User
